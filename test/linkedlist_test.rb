@@ -42,6 +42,8 @@ class LinkedListTest < Minitest::Test
     linked_list.append("doop")
     linked_list.append("deep")
     assert_equal 2, linked_list.count
+    linked_list.append("deepado")
+    assert_equal 3, linked_list.count
   end
 
   def test_that_it_can_list_elements_in_spaced_string
@@ -49,5 +51,29 @@ class LinkedListTest < Minitest::Test
     linked_list.append("doop")
     linked_list.append("deep")
     assert_equal "doop deep", linked_list.to_string
+    linked_list.append("deepado")
+    assert_equal "doop deep deepado", linked_list.to_string
+  end
+
+  def test_that_it_can_count_element_with_prepended_and_inserted_words
+    linked_list = LinkedList.new
+    linked_list.append("doop")
+    linked_list.append("deep")
+    linked_list.append("deepado")
+    linked_list.insert(1, "woo")
+    assert_equal 4, linked_list.count
+    linked_list.prepend("banana")
+    assert_equal 5, linked_list.count
+  end
+
+  def test_that_it_can_list_elements_in_spaced_string_with_prepended_and_inserted_words
+    linked_list = LinkedList.new
+    linked_list.append("doop")
+    linked_list.append("deep")
+    linked_list.append("deepado")
+    linked_list.insert(1, "woo")
+    assert_equal "doop woo deep deepado", linked_list.to_string
+    linked_list.prepend("banana")
+    assert_equal "banana doop woo deep deepado", linked_list.to_string
   end
 end

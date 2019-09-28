@@ -6,11 +6,6 @@ class LinkedList
   end
 
   def append(data)
-    # if @head == nil
-    #   @head = Node.new(data)
-    # else
-    #   @head.change_next_node(Node.new(data))
-    # end
     if @head == nil
       @head = Node.new(data)
     else
@@ -34,24 +29,10 @@ class LinkedList
         array << current_node.data
     end
     end
-    # array << @head.data
-    # the_next_node = @head.next_node
-    # if @head.next_node != nil
-    #   array << @head.next_node.data
-    # else
-    # end
     array.count
   end
 
   def to_string
-    # array = []
-    # array << @head.data
-    # the_next_node = @head.next_node
-    # if @head.next_node != nil
-    #   array << @head.next_node.data
-    # else
-    # end
-
     array = []
     if @head == nil
       @head = Node.new(data)
@@ -64,5 +45,25 @@ class LinkedList
     end
     end
     array.join(' ')
+  end
+
+  def insert(target_position, data)
+    current_node = @head
+    if target_position > 0
+    (target_position - 1).times do
+      current_node = current_node.next_node
+    end
+  end
+    #return unless node
+    the_next = current_node.next_node
+    current_node.change_next_node(Node.new(data))
+    current_node.next_node.change_next_node(the_next)
+  end
+
+  def prepend(data)
+    current_node = @head
+    the_next = current_node
+    @head = Node.new(data)
+    @head.change_next_node(the_next)
   end
 end
