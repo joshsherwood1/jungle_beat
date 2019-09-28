@@ -76,4 +76,39 @@ class LinkedListTest < Minitest::Test
     linked_list.prepend("banana")
     assert_equal "banana doop woo deep deepado", linked_list.to_string
   end
+
+  def test_it_can_find_and_return_elements
+    linked_list = LinkedList.new
+    linked_list.append("doop")
+    linked_list.append("deep")
+    linked_list.append("deepado")
+    linked_list.insert(1, "woo")
+    linked_list.prepend("banana")
+    assert_equal "banana doop woo deep deepado", linked_list.to_string
+    assert_equal "woo", linked_list.find(2, 1)
+    assert_equal "doop woo deep", linked_list.find(1, 3)
+  end
+
+  def test_it_knows_what_data_it_has
+    linked_list = LinkedList.new
+    linked_list.append("doop")
+    linked_list.append("deep")
+    linked_list.append("deepado")
+    linked_list.insert(1, "woo")
+    linked_list.prepend("banana")
+    assert_equal true, linked_list.includes?("deep")
+    assert_equal false, linked_list.includes?("dep")
+  end
+
+  # def test_it_can_remove_data_from_end
+  #   linked_list = LinkedList.new
+  #   linked_list.append("doop")
+  #   linked_list.append("deep")
+  #   linked_list.append("deepado")
+  #   linked_list.insert(1, "woo")
+  #   linked_list.prepend("banana")
+    #linked_list.pop
+    #linked_list.pop
+    #assert_equal "banana doop woo", linked_list.to_string
+  # end
 end

@@ -9,9 +9,9 @@ class LinkedList
     if @head == nil
       @head = Node.new(data)
     else
-      current_node = @head
-      while current_node.next_node != nil
-        current_node = current_node.next_node
+    current_node = @head
+    while current_node.next_node != nil
+      current_node = current_node.next_node
     end
     current_node.change_next_node(Node.new(data))
     end
@@ -65,5 +65,43 @@ class LinkedList
     the_next = current_node
     @head = Node.new(data)
     @head.change_next_node(the_next)
+  end
+
+  def find(target_position, number_of_elements_to_return)
+    array = []
+    if @head == nil
+      @head = Node.new(data)
+    else
+      current_node = @head
+      array << @head.data
+      while current_node.next_node != nil
+        current_node = current_node.next_node
+        array << current_node.data
+    end
+    end
+    new_array = array[target_position...(target_position + number_of_elements_to_return)]
+    new_array.join(' ')
+  end
+
+  def includes?(data)
+    array = []
+    if @head == nil
+      @head = Node.new(data)
+    else
+      current_node = @head
+      array << @head.data
+      while current_node.next_node != nil
+        current_node = current_node.next_node
+        array << current_node.data
+    end
+    end
+    array.include? data
+  end
+
+  def pop
+    current_node = @head
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+    end
   end
 end
